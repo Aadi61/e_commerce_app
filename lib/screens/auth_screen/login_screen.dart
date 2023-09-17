@@ -1,5 +1,6 @@
 import 'package:e_commerce/consts/consts.dart';
 import 'package:e_commerce/screens/auth_screen/signup_screen.dart';
+import 'package:e_commerce/screens/home_screen/home_screen.dart';
 import 'package:e_commerce/widgets/bg_widget.dart';
 import 'package:e_commerce/widgets/custom_textfield.dart';
 import 'package:e_commerce/widgets/logo_widget.dart';
@@ -32,7 +33,9 @@ class LoginScreen extends StatelessWidget {
                     alignment: Alignment.centerRight,
                     child: TextButton(onPressed:() {}, child: 'Forget Password'.text.make())),
                     5.heightBox,
-                    MyButton(title: 'Log in',color :redColor,textColor: whiteColor,onPress: (){}).box.width(context.screenWidth-50).make(),
+                    MyButton(title: 'Log in',color :redColor,textColor: whiteColor,onPress: (){
+                      Get.to(()=> HomeScreen());
+                    }).box.width(context.screenWidth-50).make(),
                     'or create a new account?'.text.color(fontGrey).make(),
                     5.heightBox,
                     MyButton(title: 'Sign up',color: lightGolden,textColor: redColor,onPress: (){

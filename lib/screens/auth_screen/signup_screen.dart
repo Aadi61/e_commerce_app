@@ -7,9 +7,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
 const iconList=[icFacebookLogo,icGoogleLogo, icTwitterLogo];
-class SignUpScreen extends StatelessWidget {
+class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
-  
+
+  @override
+  State<SignUpScreen> createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<SignUpScreen> {
+  bool? isCheck=false;
   @override
   Widget build(BuildContext context) {
     return bgWidget(
@@ -33,7 +39,14 @@ class SignUpScreen extends StatelessWidget {
                     5.heightBox,
                    Row(
                     children: [
-                      Checkbox(value: false, onChanged: (newValue){}
+                      Checkbox(
+                        activeColor: redColor,
+                        checkColor: whiteColor,
+                        value: isCheck, onChanged: (newValue){
+                        setState(() {
+                          isCheck=newValue;
+                        });
+                      }
                       ),
                       10.heightBox,
                       Expanded(
