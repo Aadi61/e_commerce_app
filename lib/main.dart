@@ -1,3 +1,4 @@
+import 'package:e_commerce/consts/colors.dart';
 import 'package:e_commerce/consts/styles.dart';
 import 'package:e_commerce/screens/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -17,8 +18,13 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
+        
         scaffoldBackgroundColor: Colors.transparent,
-        appBarTheme: const AppBarTheme(backgroundColor: Colors.transparent),
+        appBarTheme: const AppBarTheme(
+          iconTheme: IconThemeData(
+            color: darkFontGrey
+          ),
+          backgroundColor: Colors.transparent),
         fontFamily: regular
       ),
     home: const SplashScreen(),
