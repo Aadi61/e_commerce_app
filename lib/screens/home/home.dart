@@ -11,32 +11,52 @@ class Home extends StatelessWidget {
   const Home({super.key});
   @override
   Widget build(BuildContext context) {
-    var controller= Get.put(HomeScreenController());
-    var screensList =[
+    var controller = Get.put(HomeScreenController());
+    var screensList = [
       HomeScreen(),
       CategoriesScreen(),
       CartScreen(),
       ProfileScreen()
     ];
-    var itemsList=[
-      BottomNavigationBarItem(icon: Image.asset(icHome,width: 26,), label: "Home"),
-      BottomNavigationBarItem(icon: Image.asset(icCategories,width: 26,), label: "Categories"),
-      BottomNavigationBarItem(icon: Image.asset(icCart,width: 26,), label: "Cart"),
-      BottomNavigationBarItem(icon: Image.asset(icProfile,width: 26,), label: "Profile"),
+    var itemsList = [
+      BottomNavigationBarItem(
+          icon: Image.asset(
+            icHome,
+            width: 26,
+          ),
+          label: "Home"),
+      BottomNavigationBarItem(
+          icon: Image.asset(
+            icCategories,
+            width: 26,
+          ),
+          label: "Categories"),
+      BottomNavigationBarItem(
+          icon: Image.asset(
+            icCart,
+            width: 26,
+          ),
+          label: "Cart"),
+      BottomNavigationBarItem(
+          icon: Image.asset(
+            icProfile,
+            width: 26,
+          ),
+          label: "Profile"),
     ];
     return Scaffold(
       body: Obx(() => screensList.elementAt(controller.navIndex.value)),
-      bottomNavigationBar: Obx(()=>
-        BottomNavigationBar(
-          currentIndex: controller.navIndex.value,
-          onTap: (value) {
-            controller.navIndex.value=value;
-          },
-          selectedItemColor: redColor,
-          selectedLabelStyle: const TextStyle(fontFamily: semibold),
-          type: BottomNavigationBarType.fixed,
-          backgroundColor: whiteColor,
-          items: itemsList),
+      bottomNavigationBar: Obx(
+        () => BottomNavigationBar(
+            currentIndex: controller.navIndex.value,
+            onTap: (value) {
+              controller.navIndex.value = value;
+            },
+            selectedItemColor: redColor,
+            selectedLabelStyle: const TextStyle(fontFamily: semibold),
+            type: BottomNavigationBarType.fixed,
+            backgroundColor: whiteColor,
+            items: itemsList),
       ),
     );
   }

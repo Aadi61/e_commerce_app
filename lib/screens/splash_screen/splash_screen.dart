@@ -7,6 +7,7 @@ import 'package:e_commerce/consts/styles.dart';
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
 import 'package:velocity_x/velocity_x.dart';
+
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -15,36 +16,35 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  changeScreen(){
-    Future.delayed(
-      const Duration(seconds: 3), (){
-        Get.to(()=> const LoginScreen());
-      }
-    );
+  changeScreen() {
+    Future.delayed(const Duration(seconds: 3), () {
+      Get.to(() => const LoginScreen());
+    });
   }
-@override
+
+  @override
   void initState() {
     changeScreen();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: redColor,
       body: Center(
-        child: Column(
-          children: [
-            Align(
+        child: Column(children: [
+          Align(
               alignment: Alignment.topLeft,
-              child: Image.asset(icSplashBg, width: 300,)
-              ),
-            20.heightBox,
-            logoWidget(),
-            10.heightBox,
-            'e-Commerce'.text.fontFamily(bold).size(22).white.make()
-          ]
-          )
-          ,
+              child: Image.asset(
+                icSplashBg,
+                width: 300,
+              )),
+          20.heightBox,
+          logoWidget(),
+          10.heightBox,
+          'e-Commerce'.text.fontFamily(bold).size(22).white.make()
+        ]),
       ),
     );
   }

@@ -9,32 +9,73 @@ class CategoriesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var categoriesImg=[imgFc1,imgFc2,imgFc3,imgFc4,imgFc5,imgFc6,imgFc7,imgFc8,imgFc9];
-    var categoriesList=["Women Dress", "Men Clothing & Fashion", "Computer & Accessories", "Automobile & Motorcycle", "Kids & Toys","Sports","Jewellery & Watches","Mobile Phones", "Beauty, Health & Hair", "Furiniute"];
+    var categoriesImg = [
+      imgFc1,
+      imgFc2,
+      imgFc3,
+      imgFc4,
+      imgFc5,
+      imgFc6,
+      imgFc7,
+      imgFc8,
+      imgFc9
+    ];
+    var categoriesList = [
+      "Women Dress",
+      "Men Clothing & Fashion",
+      "Computer & Accessories",
+      "Automobile & Motorcycle",
+      "Kids & Toys",
+      "Sports",
+      "Jewellery & Watches",
+      "Mobile Phones",
+      "Beauty, Health & Hair",
+      "Furiniute"
+    ];
     return bgWidget(
-      child: Scaffold(
-        appBar: AppBar(
-          title: "Categories".text.fontFamily(bold).white.make(),
-        ),
-        body: Container(
+        child: Scaffold(
+      appBar: AppBar(
+        title: "Categories".text.fontFamily(bold).white.make(),
+      ),
+      body: Container(
           child: GridView.builder(
-            itemCount: 9,
-            shrinkWrap: true,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3,crossAxisSpacing: 8,mainAxisSpacing: 8,mainAxisExtent: 200), itemBuilder:(context,index){
-            return Container(
-              child: Column(
-                children: [
-                  Image.asset(categoriesImg[index],height: 120,width: 200,fit: BoxFit.cover,),
-                  10.heightBox,
-                  "${categoriesList[index]}".text.fontFamily(semibold).color(darkFontGrey).align(TextAlign.center).make()
-                ],
-              ).box.white.rounded.clip(Clip.antiAlias).outerShadowSm.make().onTap(() {
-                Get.to(CategoriesDetail(title: categoriesList[index]));
-              }),
-            );
-          })
-          ),
-      )
-    );
+              itemCount: 9,
+              shrinkWrap: true,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  crossAxisSpacing: 8,
+                  mainAxisSpacing: 8,
+                  mainAxisExtent: 200),
+              itemBuilder: (context, index) {
+                return Container(
+                  child: Column(
+                    children: [
+                      Image.asset(
+                        categoriesImg[index],
+                        height: 120,
+                        width: 200,
+                        fit: BoxFit.cover,
+                      ),
+                      10.heightBox,
+                      "${categoriesList[index]}"
+                          .text
+                          .fontFamily(semibold)
+                          .color(darkFontGrey)
+                          .align(TextAlign.center)
+                          .make()
+                    ],
+                  )
+                      .box
+                      .white
+                      .rounded
+                      .clip(Clip.antiAlias)
+                      .outerShadowSm
+                      .make()
+                      .onTap(() {
+                    Get.to(CategoriesDetail(title: categoriesList[index]));
+                  }),
+                );
+              })),
+    ));
   }
 }
