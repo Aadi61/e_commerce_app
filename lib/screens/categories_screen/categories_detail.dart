@@ -73,9 +73,9 @@ class CategoriesDetail extends StatelessWidget {
                             .roundedSM
                             .make()
                             .onTap(() {
-                          Get.to(ItemDetails(
-                            title: "Random title",
-                          ));
+                          Get.to(() => ItemDetails(
+                                title: "Random title",
+                              ));
                         });
                       }))
             ],
