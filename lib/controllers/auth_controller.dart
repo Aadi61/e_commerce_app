@@ -6,12 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AuthController extends GetxController {
-  var isLoading= false.obs;
+  var isLoading = false.obs;
 
-  var emailController= TextEditingController();
-  var passwordController=TextEditingController();
+  var emailController = TextEditingController();
+  var passwordController = TextEditingController();
 
-  Future<UserCredential> loginMethod({ context}) async {
+  Future<UserCredential> loginMethod({context}) async {
     UserCredential? userCredential;
 
     try {
@@ -38,7 +38,16 @@ class AuthController extends GetxController {
   storeUserData({email, name, password}) async {
     DocumentReference store =
         firestore.collection(userCollections).doc(currentUser!.uid);
-    store.set({'password': password, 'name': name, 'email': email,'imageUrl':'', 'id':currentUser!.uid});
+    store.set({
+      'password': password,
+      'name': name,
+      'email': email,
+      'imageUrl': '',
+      'id': currentUser!.uid,
+      'cart_count': '00',
+      'wishlist_count': '00',
+      'order_count': '00'
+    });
   }
 
   signoutMethod(context) async {
