@@ -13,7 +13,7 @@ Widget EditProfileScreen(BuildContext context, {dynamic data}) {
   var controller = Get.find<ProfileScreenController>();
 
   controller.nameController.text = data['name'];
-  controller.passwordController.text = data['password'];
+  //controller.newPasswordController.text = data['password'];
   return bgWidget(
       child: Scaffold(
     resizeToAvoidBottomInset: false,
@@ -59,10 +59,17 @@ Widget EditProfileScreen(BuildContext context, {dynamic data}) {
               hint: "Full Name",
               title: "Name",
               isPassword: false),
+              10.heightBox,
           customTextField(
-              controller: controller.passwordController,
+              controller: controller.oldPasswordController,
               hint: "******",
-              title: "Password",
+              title: "Old Password",
+              isPassword: true),
+              10.heightBox,
+          customTextField(
+              controller: controller.newPasswordController,
+              hint: "******",
+              title: "New Password",
               isPassword: true),
           20.heightBox,
           controller.isLoading.value
@@ -74,12 +81,31 @@ Widget EditProfileScreen(BuildContext context, {dynamic data}) {
                       color: redColor,
                       onPress: () async {
                         controller.isLoading(true);
-                        await controller.uploadImage();
+
+                        if(controller.profileImagePath.isNotEmpty){
+                          await controller.uploadImage();
+                        }
+                        else{
+                          controller.profileImageLink=data['imageUrl'];
+                        }
+
+                        if(data['password']==controller.oldPasswordController.text){
+                        await controller.changeAuthPassword(
+                          email: data['email'],
+                          password: controller.oldPasswordController.text,
+                          newPassword: controller.newPasswordController.text
+                        );
                         await controller.updateProfile(
                             name: controller.nameController.text,
-                            password: controller.passwordController.text,
+                            password: controller.newPasswordController.text,
                             imageUrl: controller.profileImageLink);
                         controller.isLoading(false);
+                        VxToast.show(context, msg: "Updated");
+                        } 
+                        else{
+                          VxToast.show(context, msg: "Wrong Password");
+                          controller.isLoading(false);
+                        }                       
                       }))
         ],
       )

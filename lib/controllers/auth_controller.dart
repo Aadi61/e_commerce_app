@@ -10,7 +10,7 @@ class AuthController extends GetxController {
 
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
-
+  
   Future<UserCredential> loginMethod({context}) async {
     UserCredential? userCredential;
 

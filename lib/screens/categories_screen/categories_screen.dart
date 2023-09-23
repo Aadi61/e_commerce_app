@@ -1,4 +1,5 @@
 import 'package:e_commerce/consts/consts.dart';
+import 'package:e_commerce/controllers/product_controller.dart';
 import 'package:e_commerce/screens/categories_screen/categories_detail.dart';
 import 'package:e_commerce/widgets/bg_widget.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ class CategoriesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var controller = Get.put(ProductController());
     var categoriesImg = [
       imgFc1,
       imgFc2,
@@ -22,15 +24,14 @@ class CategoriesScreen extends StatelessWidget {
     ];
     var categoriesList = [
       "Women Dress",
-      "Men Clothing & Fashion",
       "Computer & Accessories",
       "Automobile & Motorcycle",
       "Kids & Toys",
       "Sports",
-      "Jewellery & Watches",
       "Mobile Phones",
       "Beauty, Health & Hair",
-      "Furiniute"
+      "Jewellery & Watches",
+      "Furiniute",
     ];
     return bgWidget(
         child: Scaffold(
@@ -72,6 +73,7 @@ class CategoriesScreen extends StatelessWidget {
                       .outerShadowSm
                       .make()
                       .onTap(() {
+                        controller.getSubCategories(categoriesList[index]);
                     Get.to(()=>CategoriesDetail(title: categoriesList[index]));
                   }),
                 );
