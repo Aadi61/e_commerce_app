@@ -1,5 +1,7 @@
 import 'package:e_commerce/consts/consts.dart';
 import 'package:e_commerce/controllers/product_controller.dart';
+import 'package:e_commerce/screens/categories_screen/categories_screen.dart';
+import 'package:e_commerce/screens/chat_screen/chat_screen.dart';
 import 'package:e_commerce/widgets/my_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -98,7 +100,12 @@ class ItemDetails extends StatelessWidget {
                             Icons.message_rounded,
                             color: darkFontGrey,
                           ),
-                        )
+                        ).onTap(() {
+                          Get.to(()=> ChatScreen(),
+                          arguments: [data['p_seller'],data['vendor_id']]
+                          );
+                          
+                        })
                       ],
                     )
                         .box
@@ -274,7 +281,16 @@ class ItemDetails extends StatelessWidget {
                 title: "Add to cart",
                 color: redColor,
                 textColor: whiteColor,
-                onPress: () {}),
+                onPress: () {
+                  controller.addToCart(
+                    title: data['p_name'],
+                    color: data['p_colors'][controller.colorIndex.value],
+                    img: data['p_images'][0],
+                    sellername: data['p_seller'],
+                    context: context
+                  );
+                  VxToast.show(context, msg: "Added to cart");
+                }),
           )
         ],
       ),
